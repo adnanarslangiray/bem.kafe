@@ -47,6 +47,7 @@ namespace KafeYonetim.Sunum.AnaUygulama
                 Console.WriteLine("9. Asçı Ekle");
                 Console.WriteLine("10. Bulaşıkçı Ekle");
                 Console.WriteLine("11. Çalışanları Listele");
+                Console.WriteLine("12. Çalışanların Sayısı");
                 Console.WriteLine();
                 Console.Write("Bir seçim yapınız (çıkmak için H harfine basınız): ");
                 var secim = Console.ReadLine();
@@ -64,6 +65,7 @@ namespace KafeYonetim.Sunum.AnaUygulama
                     case "9": AsciEkle(); break;
                     case "10": BulasikciEkle(); break;
                     case "11": CalisanListesiniGetir(); break;
+                    case "12": CalisanSayisiniGetir(); break;
                     case "h": return;
                     default:
                         break;
@@ -109,7 +111,20 @@ namespace KafeYonetim.Sunum.AnaUygulama
 
             Console.ReadLine();
         }
+        private static void CalisanSayisiniGetir()
+        {
+            Console.Clear();
 
+            var calisanSayisi = DataManager.CalisanSayisiniGetir();
+
+            
+            {
+                Console.WriteLine($"Toplam{calisanSayisi }Calisan var");
+                Console.ReadLine();
+            }
+
+            Console.ReadLine();
+        }
         private static void AsciEkle()
         {
             Console.Clear();
