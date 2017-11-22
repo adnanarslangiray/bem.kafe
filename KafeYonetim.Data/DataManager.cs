@@ -134,6 +134,30 @@ namespace KafeYonetim.Data
                 }
             }
         }
+        public static List<Garson> GarsonListele()
+        {
+            using (var connection = CreateConnection())
+            {
+                var command = new SqlCommand("GarsonListele", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                using (var reader = command.ExecuteReader())
+                {
+                    var list = new List<Garson>();
+
+                    while (reader.Read())
+                    {
+                        var garson = new Garson(reader["Isim"].ToString(), (DateTime)reader["IseGirisTarihi"], DataManager.AktifKafeyiGetir());
+                        garson.Bahsis = Convert.ToInt32(reader["Bahsis"]);
+                       
+
+                        list.Add(garson);
+                    }
+
+                    return list;
+                }
+            }
+        }
 
         public static int AsciEkle(Asci asci)
         {
