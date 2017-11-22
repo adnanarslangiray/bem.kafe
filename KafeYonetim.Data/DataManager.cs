@@ -86,9 +86,9 @@ namespace KafeYonetim.Data
                 reader.Read();
 
                 var tuple = new Tuple<int, int>((int)reader["MasaSayisi"], (int)reader["KisiSayisi"]);
-
+               
                 return tuple; 
-
+               
                 //return new Tuple<int, int>((int)reader["MasaSayisi"], (int)reader["KisiSayisi"]);               
                 //return new MasaKisiSayisi { MasaSayisi = (int)reader["MasaSayisi"], KisiSayisi=(int)reader["KisiSayisi"]};
             }
@@ -104,8 +104,9 @@ namespace KafeYonetim.Data
                 var reader = command.ExecuteReader();
 
                 reader.Read();
-
+                reader.Close();
                 int result = Convert.ToInt32(command.ExecuteScalar());
+                
                 return result;
             }
         }
@@ -128,7 +129,7 @@ namespace KafeYonetim.Data
 
                         list.Add(calisan);
                     }
-
+                   
                     return list;
                 }
             }
@@ -220,7 +221,7 @@ namespace KafeYonetim.Data
                 }
 
             }
-
+            reader.Close();
             return urunListesi;
 
         }
