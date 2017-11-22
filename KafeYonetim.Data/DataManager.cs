@@ -100,15 +100,35 @@ namespace KafeYonetim.Data
             {
                 var command = new SqlCommand("SELECT COUNT(*) FROM Calisan", connection);
 
-
-                var reader = command.ExecuteReader();
-
-                reader.Read();
-
                 int result = Convert.ToInt32(command.ExecuteScalar());
+
                 return result;
             }
         }
+
+        public static List<Garson> GarsonListele()
+        {
+            using (var conn = CreateConnection())
+            {
+                var command = new SqlCommand("SELECT Isim , IseGirisTarihi, Bahsis FROM Calisan INNER JOIN Garson ON Calisan.GorevTabloId = Garson.Id WHERE Calisan.GorevId = 2", conn);
+
+                var list = new List<Garson>();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var garson = new Garson(reader["Isim"].ToString(), (DateTime)reader["IseGirisTarihi"], AktifKafeyiGetir());
+                        garson.Bahsis = Convert.ToInt32(reader["Bahsis"]);
+
+                        list.Add(garson);
+                    }
+
+                    return list;
+                }
+            }
+        }
+
         public static List<Calisan> CalisanListesiniGetir()
         {
             using (var connection = CreateConnection())
