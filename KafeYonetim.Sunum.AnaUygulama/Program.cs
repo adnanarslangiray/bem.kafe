@@ -91,9 +91,10 @@ namespace KafeYonetim.Sunum.AnaUygulama
             foreach (var garson in garsonlar)
             {
                 Console.WriteLine($"{garson.Isim.PadRight(30)}{garson.IseGirisTarihi.ToString("dd.MM.yyyy").PadRight(30)}{garson.Bahsis}");
-            }
 
-            Console.ReadLine();
+
+                Console.ReadLine();
+            }
         }
 
         private static void CalisanSayisiniGetir()
