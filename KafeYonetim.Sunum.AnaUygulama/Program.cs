@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KafeYonetim.Sunum.AnaUygulama
 {
-    class Program
+class Program
     {
         static void Main(string[] args)
         {
